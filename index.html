@@ -1,0 +1,70 @@
+<div id="root"></div>
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+<link  rel="stylesheet" href="./style.css"/>
+<script type="text/babel">
+ const App = () => {
+    let [first, setfirst] = React.useState(0)
+    let [second, setsecond] = React.useState(0)
+    const handleClick=(eve)=>{
+        const id = eve.target.id;
+        if (id === "1") 
+        {
+        setfirst(first + 1);
+      } else if (id === "2") 
+      {
+       setfirst(first - 1);
+     } else if (id === "3")
+      {
+       setfirst(0);
+}
+
+    }
+
+    function val(data){
+      const id = data.target.id;
+        if (id === "1") 
+        {
+        setsecond(second + 1);
+      } else if (id === "2") 
+      {
+       setsecond(second- 1);
+     } else if (id === "3")
+      {
+       setsecond(0);
+}
+    }
+      return (
+        <div >
+        <div>
+            <h1 >Parent Component</h1>
+            <h2 >{second}</h2>
+            <button  id="1" onClick={handleClick}>+</button>
+            <button  id="2" onClick={handleClick}>-</button>
+            <button  id="3" onClick={handleClick}>reset</button>
+            </div>
+        <div>
+        <A data={first} cb={val}/>
+        </div>
+        </div>
+
+      )
+    }
+const A=(props)=>{
+    const{data,cb}=props
+    return(
+        <div>
+            <h1>Child Component</h1>
+            <h2>{data}</h2>
+            <button id="1" onClick={cb}>+</button>
+            <button id="2" onClick={cb}>-</button>
+            <button id="3" onClick={cb}>reset</button>
+            </div>
+        )
+}
+    
+    const containerref=document.getElementById("root")
+    const root=ReactDOM.createRoot(containerref)
+    root.render(<App/>)
+ </script>
